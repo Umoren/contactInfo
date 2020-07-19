@@ -39,7 +39,7 @@ exports.singleContact = (req, res) => {
 exports.deleteContact = (req, res) => {
     let id = req.params.contactId;
 
-    Contact.remove({
+    Contact.deleteOne({
         _id: id
     }).then(result => {
         res.status(200).json(result)
