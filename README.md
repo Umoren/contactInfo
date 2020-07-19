@@ -1,5 +1,10 @@
-# contactInfo
-A contact information API built with nodejs
+# Installation
+- clone the repo 
+- yarn or npm install
+- npm i -g nodemon
+- npm run start
+
+
 
 # Contact Info API
 
