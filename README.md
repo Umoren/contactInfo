@@ -1,5 +1,6 @@
 # Installation
 - clone the repo 
+- cd contactInfo
 - yarn or npm install
 - npm i -g nodemon
 - npm run start
