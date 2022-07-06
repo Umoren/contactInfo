@@ -1,5 +1,6 @@
-require('dotenv').config()
+
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
@@ -8,7 +9,7 @@ const db = mongoose.connection;
 const morgan = require('morgan');
 const path = require('path')
 
-const uri = process.env.MONGODB_URI;
+const uri = 'mongodb+srv://sammy:I82uYGSd7ErQT1Rf@cluster0.n6phw.mongodb.net/sammy?retryWrites=true&w=majority';
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
@@ -21,8 +22,12 @@ db.once('open', () => {
 })
 
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use(morgan("dev"))
+app.use(bodyParser.json());
 app.use(cors())
 
 let routes = require("./routes/routes");

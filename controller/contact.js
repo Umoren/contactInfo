@@ -4,11 +4,11 @@ const Contact = mongoose.model('Contact');
 
 
 // View all contacts
-exports.allContacts = function (req, res)  {
+exports.allContacts = function (req, res) {
     Contact.find().exec().then(result => {
         res.status(200).json(result)
     })
-    .catch(err => res.status(500).json(err))
+        .catch(err => res.status(500).json(err))
 };
 
 // Add Contacts
@@ -21,8 +21,10 @@ exports.addContact = (req, res) => {
         message: req.body.message
     });
 
+    console.log(req.body.first_name)
+
     newContact.save((err, contact) => {
-        err ? res.status(500).json({error: 'Something went wrong'}) : res.status(200).json(contact)
+        err ? res.status(500).json({ error: 'Something went wrong' }) : res.status(200).json(contact)
     })
 }
 
@@ -44,7 +46,7 @@ exports.deleteContact = (req, res) => {
     }).then(result => {
         res.status(200).json(result)
     }).catch(err => {
-        res.status(500).json({error: err})
+        res.status(500).json({ error: err })
     })
 };
 
@@ -52,7 +54,7 @@ exports.deleteContact = (req, res) => {
 
 exports.updateContact = (req, res) => {
     Contact.findById(req.params.contactId, (err, contact) => {
-        if (err) 
+        if (err)
             res.send(err);
         let updatedContact = new Contact({
             first_name: req.body.first_name,
@@ -68,7 +70,7 @@ exports.updateContact = (req, res) => {
             }) : res.status(200).json({
                 contact,
                 message: 'Contact info updated'
-            }) 
+            })
 
         })
     })
